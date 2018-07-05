@@ -1,4 +1,4 @@
-#define MAX_STRLEN 64
+#define MAX_STRLEN 2048
 #define DEBUG false
 #include<iostream>
 #include<string>
@@ -71,9 +71,14 @@ main(void) {
 
     //Start making the output
     for(int i = 0; i < MAX_STRLEN; ++i) {
-
-            output += letters[temp_sum % target_base];
-            temp_sum = (temp_sum-temp_sum%target_base) / target_base;
+            if(temp_sum < target_base) {
+                output += letters[temp_sum % target_base];
+                break;
+            }
+            else {
+                output += letters[temp_sum % target_base];
+                temp_sum = (temp_sum - temp_sum % target_base) / target_base;
+            }
     }
 
     //Reversing the output
@@ -84,7 +89,7 @@ main(void) {
     printf("Input: %s\n"
            "Source base: %d\n"
            "Target base: %d\n"
-           "Output: %s\n",raw_string.c_str(),source_base,target_base,output.substr(output.find_first_not_of('0'),output.size()).c_str());
+           "Output: %s\n",raw_string.c_str(),source_base,target_base,output.c_str());
     return 0;
 
 };
