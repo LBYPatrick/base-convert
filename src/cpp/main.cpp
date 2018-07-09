@@ -36,8 +36,8 @@ main(void) {
     string raw_string;
     int    target_base;
     int    source_base;
-    long int    temp_factor = 1;
-    long int    temp_sum    = 0;
+    long long    temp_factor = 1;
+    long long    temp_sum    = 0;
     int    temp_convert_result;
     string output;
 
@@ -71,8 +71,7 @@ main(void) {
 
     //Start making the output
     for(int i = 0; i < MAX_STRLEN; ++i) {
-            if(temp_sum < target_base) {
-                output += letters[temp_sum % target_base];
+            if(temp_sum == 0) {
                 break;
             }
             else {
